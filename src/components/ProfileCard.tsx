@@ -50,26 +50,28 @@ const ProfileCard = ({ title }: Props) => {
         >
           {title}
         </Text>
-        <TouchableOpacity
-          style={{
-            width: 45,
-            height: 45,
-            borderRadius: 45,
-            backgroundColor: COLORS.primary,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onPress={async () => {
-            if (settings.haptics) {
-              await onImpact();
-            }
-            router.navigate({
-              pathname: "/(app)/settings",
-            });
-          }}
-        >
-          <Ionicons name="settings" size={24} color={COLORS.white} />
-        </TouchableOpacity>
+        {title !== "Settings" ? (
+          <TouchableOpacity
+            style={{
+              width: 45,
+              height: 45,
+              borderRadius: 45,
+              backgroundColor: COLORS.primary,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onPress={async () => {
+              if (settings.haptics) {
+                await onImpact();
+              }
+              router.navigate({
+                pathname: "/(app)/settings",
+              });
+            }}
+          >
+            <Ionicons name="settings" size={24} color={COLORS.white} />
+          </TouchableOpacity>
+        ) : null}
       </View>
 
       <TouchableOpacity

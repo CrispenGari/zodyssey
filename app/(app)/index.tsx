@@ -7,6 +7,7 @@ import { ScrollView, Text } from "react-native";
 
 const Page = () => {
   const { me } = useMeStore();
+
   return (
     <ScrollView
       style={{
@@ -20,7 +21,7 @@ const Page = () => {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Zodiac isMine zodiac={me?.zodiac!} />
+      {!!me?.zodiac ? <Zodiac isMine zodiac={me.zodiac!} /> : null}
 
       <Text
         style={{

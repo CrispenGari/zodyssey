@@ -106,7 +106,6 @@ const Page = () => {
                     if (settings.haptics) {
                       await onImpact();
                     }
-
                     restore();
                     destroy();
                   },

@@ -40,6 +40,17 @@
 - **Push Notifications** – Local notifications via Expo
 - **Manual Time-based Triggering** – For daily readings
 
+### 🖼️ Screenshots
+
+Here are some app screenshots.
+
+<p align="center">
+  <img src="/screenshots/0.jpg" alt="screenshot" width="200"/>
+  <img src="/screenshots/1.jpg" alt="screenshot" width="200"/>
+  <img src="/screenshots/2.jpg" alt="screenshot" width="200"/>
+  <img src="/screenshots/3.jpg" alt="screenshot" width="200"/>
+</p>
+
 ### 🔔 Daily Notification Setup
 
 `Zodyssey` sends a daily notification reminding users to check their zodiac reading and interesting cosmic events.

@@ -154,6 +154,8 @@ const RootLayout = () => {
   React.useEffect(() => {
     if (!!me && me.completed) {
       router.replace("/(app)");
+    } else {
+      router.replace("/");
     }
   }, []);
 
@@ -176,7 +178,7 @@ const RootLayout = () => {
         name="(app)/settings"
         options={{
           header: (props) => {
-            return <ProfileCard {...props} title="Home" />;
+            return <ProfileCard {...props} title="Settings" />;
           },
         }}
       />

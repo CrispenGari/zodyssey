@@ -99,14 +99,12 @@ const Page = () => {
               </View>
 
               <TypeWriter
-                style={[
-                  {
-                    textAlign: "center",
-                    fontFamily: FONTS.bold,
-                    fontSize: 16,
-                    color: COLORS.white,
-                  },
-                ]}
+                style={{
+                  textAlign: "center",
+                  fontFamily: FONTS.bold,
+                  fontSize: 16,
+                  color: COLORS.white,
+                }}
                 typing={1}
                 maxDelay={-50}
               >

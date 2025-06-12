@@ -3,7 +3,7 @@ import Form from "@/src/components/Form";
 import { COLORS, FONTS } from "@/src/constants";
 import { useMeStore } from "@/src/store/meStore";
 import { useSettingsStore } from "@/src/store/settingsStore";
-import { calculateAge, onImpact } from "@/src/utils";
+import { onImpact } from "@/src/utils";
 import { getZodiacSign } from "@/src/utils/zodiac";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -72,14 +72,7 @@ const Page = () => {
                 ...s,
                 error: "",
               }));
-              const age = calculateAge(state.dob);
-              if (age < 16) {
-                return setState((s) => ({
-                  ...s,
-                  error: "You are underage to use this app.",
-                }));
-              }
-              const sign = getZodiacSign(String(state.dob).split("T")[0]);
+              const sign = getZodiacSign(state.dob.toISOString().split("T")[0]);
               save({
                 ...me,
                 completed: true,
