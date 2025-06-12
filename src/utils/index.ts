@@ -33,8 +33,8 @@ export const onFetchUpdateAsync = async () => {
 export const onImpact = async () =>
   await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
-export const calculateAge = (birthDateInput?: Date | string | number) => {
-  const birthDate = new Date(birthDateInput ?? "");
+export const calculateAge = (birthDateInput: string) => {
+  const birthDate = new Date(birthDateInput);
   if (isNaN(birthDate.getTime())) {
     return 0;
   }
@@ -54,4 +54,13 @@ export const getGreetingMessage = () => {
   } else {
     return "Good evening 🌙";
   }
+};
+
+export const isTodayBirthday = (dob: string) => {
+  const today = new Date();
+  const birthDate = new Date(dob);
+  return (
+    today.getDate() === birthDate.getDate() &&
+    today.getMonth() === birthDate.getMonth()
+  );
 };

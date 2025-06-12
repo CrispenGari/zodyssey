@@ -21,12 +21,12 @@ const Page = () => {
         }}
       >
         <Animated.View entering={ZoomIn.duration(200).delay(200)}>
-          <Feather name="tool" size={50} color={COLORS.white} />
+          <Feather name="tool" size={50} color={COLORS.black} />
         </Animated.View>
         <Text
           style={{
             fontFamily: FONTS.bold,
-            color: COLORS.white,
+            color: COLORS.black,
             textAlign: "center",
             maxWidth: 300,
             marginVertical: 30,
@@ -38,7 +38,7 @@ const Page = () => {
         <Text
           style={{
             fontFamily: FONTS.bold,
-            color: COLORS.white,
+            color: COLORS.black,
             textDecorationLine: "underline",
           }}
           onPress={async () => {
@@ -46,7 +46,7 @@ const Page = () => {
               await onImpact();
             }
             router.replace({
-              pathname: "/",
+              pathname: "/(app)",
             });
           }}
         >

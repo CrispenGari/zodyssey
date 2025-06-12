@@ -1,10 +1,9 @@
 import { COLORS, FONTS } from "@/src/constants";
-import { useSettingsStore } from "@/src/store/settingsStore";
-import { onImpact } from "@/src/utils";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
 import TypeWriter from "react-native-typewriter";
+import Button from "./Button";
 
 interface Props {
   onNext: () => void;
@@ -20,7 +19,6 @@ const Form = ({
   children,
   showButtons = true,
 }: Props) => {
-  const { settings } = useSettingsStore();
   return (
     <Animated.View
       style={{
@@ -32,7 +30,7 @@ const Form = ({
           {
             fontFamily: FONTS.bold,
             fontSize: showButtons ? 25 : 16,
-            color: COLORS.white,
+            color: COLORS.black,
           },
         ]}
         typing={1}
@@ -41,35 +39,26 @@ const Form = ({
         {question}
       </TypeWriter>
       {children}
-
       {showButtons ? (
-        <View style={{ flexDirection: "row", gap: 20, marginVertical: 20 }}>
-          <TouchableOpacity
-            onPress={async () => {
-              if (settings.haptics) {
-                await onImpact();
-              }
+        <View style={{ flexDirection: "row", gap: 20 }}>
+          <Button
+            title="Previous"
+            disabled={typeof onPrevious === "undefined"}
+            onPress={() => {
               if (typeof onPrevious === "undefined") return;
               onPrevious();
             }}
-            style={[styles.btn]}
-            disabled={typeof onPrevious === "undefined"}
-          >
-            <Text style={[styles.btn_text, { color: COLORS.black }]}>
-              Previous
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.btn, { backgroundColor: COLORS.primary }]}
-            onPress={async () => {
-              if (settings.haptics) {
-                await onImpact();
-              }
-              onNext();
+            style={{
+              flex: 1,
+              width: "auto",
             }}
-          >
-            <Text style={[styles.btn_text]}>Next</Text>
-          </TouchableOpacity>
+            color={COLORS.primary}
+          />
+          <Button
+            title="Next"
+            onPress={onNext}
+            style={{ flex: 1, width: "auto" }}
+          />
         </View>
       ) : null}
     </Animated.View>

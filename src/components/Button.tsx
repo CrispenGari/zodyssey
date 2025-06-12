@@ -20,6 +20,7 @@ interface Props {
   onPress?: () => void;
   color?: string;
   indicatorColor?: string;
+  disabled?: boolean;
 }
 const Button = ({
   onPress,
@@ -30,6 +31,7 @@ const Button = ({
   titleStyle,
   color = COLORS.secondary,
   indicatorColor = COLORS.white,
+  disabled,
 }: Props) => {
   const { settings } = useSettingsStore();
   return (
@@ -42,13 +44,12 @@ const Button = ({
           onPress();
         }
       }}
-      disabled={loading}
+      disabled={loading || disabled}
       style={[
         {
           justifyContent: "center",
           alignItems: "center",
           alignSelf: "center",
-          width: "100%",
           maxWidth: 300,
           backgroundColor:
             variant === "filled"

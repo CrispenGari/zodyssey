@@ -1,13 +1,15 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { STORAGE_NAME } from "../constants";
+import { TZodiac } from "../types";
 import { zustandStorage } from "./storage";
 
 export interface TMe {
-  nickname: string;
-  gender: "male" | "female";
-  dob: Date;
+  nickname?: string;
+  gender?: "male" | "female";
+  dob?: Date;
   completed: boolean;
+  zodiac: TZodiac | null;
 }
 
 interface TMeState {

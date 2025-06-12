@@ -24,7 +24,8 @@ export const APP_NAME = "Zodyssey";
 export const STORAGE_NAME = {
   ME: "user-me",
   SETTINGS: "my-settings",
-  NOTIFICATION_FLAG_KEY: "notification-triggered",
+  DAILY_NOTIFICATION_FLAG_KEY: "daily-notification-triggered",
+  BDAY_NOTIFICATION_FLAG_KEY: "bday-notification-triggered",
 };
 
 export const LANDING_MESSAGES = [

@@ -115,11 +115,11 @@ const Page = () => {
             </View>
 
             <Button
-              style={{}}
+              style={{ width: "100%" }}
               variant="filled"
               title="Continue"
               onPress={() => {
-                router.replace("ons/(basic)/nickname");
+                router.replace("/(basic)/nickname");
               }}
             />
           </View>

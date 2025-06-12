@@ -1,5 +1,6 @@
-export const zodiac = {
-  Aries: {
+export const zodiacs = [
+  {
+    zodiac: "Aries",
     longitude_start: "0",
     longitude_end: "30",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Aries.svg",
@@ -12,7 +13,8 @@ export const zodiac = {
     approximate_end_date: "20 April",
     keywords: ["driven", "idealistic", "aggressive"],
   },
-  Taurus: {
+  {
+    zodiac: "Taurus",
     longitude_start: "30",
     longitude_end: "60",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Taurus.svg",
@@ -25,7 +27,8 @@ export const zodiac = {
     approximate_end_date: "21 May",
     keywords: ["resolute", "sensual", "indulgent"],
   },
-  Gemini: {
+  {
+    zodiac: "Gemini",
     longitude_start: "60",
     longitude_end: "90",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Gemini.svg",
@@ -38,7 +41,8 @@ export const zodiac = {
     approximate_end_date: "21 June",
     keywords: ["playful", "curious", "two-faced"],
   },
-  Cancer: {
+  {
+    zodiac: "Cancer",
     longitude_start: "90",
     longitude_end: "120",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Cancer.svg",
@@ -51,7 +55,8 @@ export const zodiac = {
     approximate_end_date: "23 July",
     keywords: ["nurturing", "snobby", "petty"],
   },
-  Leo: {
+  {
+    zodiac: "Leo",
     longitude_start: "120",
     longitude_end: "150",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Leo.svg",
@@ -64,7 +69,8 @@ export const zodiac = {
     approximate_end_date: "23 August",
     keywords: ["fierce", "opulent", "narcissistic"],
   },
-  Virgo: {
+  {
+    zodiac: "Virgo",
     longitude_start: "150",
     longitude_end: "180",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Virgo.svg",
@@ -77,7 +83,8 @@ export const zodiac = {
     approximate_end_date: "23 September",
     keywords: ["meticulous", "helpful", "naive"],
   },
-  Libra: {
+  {
+    zodiac: "Libra",
     longitude_start: "180",
     longitude_end: "210",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Libra.svg",
@@ -90,7 +97,8 @@ export const zodiac = {
     approximate_end_date: "23 October",
     keywords: ["balanced", "chatty", "indecisive"],
   },
-  Scorpio: {
+  {
+    zodiac: "Scorpio",
     longitude_start: "210",
     longitude_end: "240",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Scorpio.svg",
@@ -103,7 +111,8 @@ export const zodiac = {
     approximate_end_date: "22 November",
     keywords: ["deep", "magnetic", "destructive"],
   },
-  Sagittarius: {
+  {
+    zodiac: "Sagittarius",
     longitude_start: "240",
     longitude_end: "270",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Sagittarius.svg",
@@ -116,7 +125,8 @@ export const zodiac = {
     approximate_end_date: "21 December",
     keywords: ["ambitious", "daring", "coarse"],
   },
-  Capricorn: {
+  {
+    zodiac: "Capricorn",
     longitude_start: "270",
     longitude_end: "300",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Capricorn.svg",
@@ -129,7 +139,8 @@ export const zodiac = {
     approximate_end_date: "20 January",
     keywords: ["responsible", "awkward", "rigid"],
   },
-  Aquarius: {
+  {
+    zodiac: "Aquarius",
     longitude_start: "300",
     longitude_end: "330",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Aquarius.svg",
@@ -142,7 +153,8 @@ export const zodiac = {
     approximate_end_date: "19 February",
     keywords: ["inventive", "zany", "erratic"],
   },
-  Pisces: {
+  {
+    zodiac: "Pisces",
     longitude_start: "330",
     longitude_end: "360",
     svg_symbol: "https://en.wikipedia.org/wiki/File:Pisces.svg",
@@ -155,4 +167,4 @@ export const zodiac = {
     approximate_end_date: "20 March",
     keywords: ["artistic", "sentimental", "dependent"],
   },
-};
+];

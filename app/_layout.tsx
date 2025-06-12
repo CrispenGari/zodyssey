@@ -1,9 +1,17 @@
-import { COLORS, FONTS, Fonts } from "@/src/constants";
+import ProfileCard from "@/src/components/ProfileCard";
+import { COLORS, FONTS, Fonts, STORAGE_NAME } from "@/src/constants";
+import { ddk } from "@/src/data/ddk";
 import { useMeStore } from "@/src/store/meStore";
 import { useSettingsStore } from "@/src/store/settingsStore";
-import { onImpact } from "@/src/utils";
+import { calculateAge, isTodayBirthday, onImpact } from "@/src/utils";
+import {
+  registerForPushNotificationsAsync,
+  scheduleDailyNotification,
+} from "@/src/utils/notifications";
+import { getRandomItem } from "@/src/utils/zodiac";
 import { Ionicons } from "@expo/vector-icons";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loadAsync } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { Stack, useRouter } from "expo-router";
@@ -73,23 +81,59 @@ const RootLayout = () => {
   const { settings } = useSettingsStore();
   const { me } = useMeStore();
 
-  // React.useEffect(() => {
-  //   registerForPushNotificationsAsync().then(async (token) => {
-  //     if (!!token && settings.notifications && !!me) {
-  //       const today = new Date().toISOString().split("T")[0];
-  //       const scheduledDate = await AsyncStorage.getItem(
-  //         STORAGE_NAME.NOTIFICATION_FLAG_KEY
-  //       );
-  //       if (scheduledDate !== today) {
-  //         await scheduleDailyNotification({
-  //           body: `👋 Good morning, ${me.nickname}. Track your daily GPA.`,
-  //           subtitle: ''
-  //         });
-  //         await AsyncStorage.setItem(STORAGE_NAME.NOTIFICATION_FLAG_KEY, today);
-  //       }
-  //     }
-  //   });
-  // }, [me, settings]);
+  React.useEffect(() => {
+    registerForPushNotificationsAsync().then(async (token) => {
+      if (!!me) {
+        const isBirthday = isTodayBirthday(String(me.dob).split("T")[0]);
+        if (!!token && settings.notifications && isBirthday) {
+          const today = new Date().toISOString().split("T")[0];
+          const scheduledDate = await AsyncStorage.getItem(
+            STORAGE_NAME.BDAY_NOTIFICATION_FLAG_KEY
+          );
+          if (scheduledDate !== today) {
+            const age = calculateAge(String(me.dob).split("T")[0]);
+            await scheduleDailyNotification({
+              body: `You are now ${age} years old.`,
+              subtitle: `🎊We wish the ${me.zodiac?.unicode_symbol} ${me.zodiac?.zodiac} many more years to come.🍾`,
+              title: `🎉Happy birthday ${me.nickname}🎊🍾`,
+            });
+            await AsyncStorage.setItem(
+              STORAGE_NAME.BDAY_NOTIFICATION_FLAG_KEY,
+              today
+            );
+          }
+        }
+      }
+    });
+  }, [me, settings]);
+
+  React.useEffect(() => {
+    registerForPushNotificationsAsync().then(async (token) => {
+      if (!!token && settings.notifications && !!me) {
+        const today = new Date().toISOString().split("T")[0];
+        const scheduledDate = await AsyncStorage.getItem(
+          STORAGE_NAME.DAILY_NOTIFICATION_FLAG_KEY
+        );
+        if (scheduledDate !== today) {
+          const note = getRandomItem(ddk);
+          const subtitle =
+            me.zodiac?.zodiac === note.zodiac
+              ? `🍀 Today is your lucky day.🤞`
+              : `🌻 Have a good day. 🍾`;
+          const body = getRandomItem(note.notes);
+          await scheduleDailyNotification({
+            body,
+            subtitle,
+            title: `🥱 Did you know? ℹ️`,
+          });
+          await AsyncStorage.setItem(
+            STORAGE_NAME.DAILY_NOTIFICATION_FLAG_KEY,
+            today
+          );
+        }
+      }
+    });
+  }, [me, settings]);
 
   React.useEffect(() => {
     const notificationListener = Notifications.addNotificationReceivedListener(
@@ -119,8 +163,23 @@ const RootLayout = () => {
       <Stack.Screen name="(basic)/nickname" options={{ headerShown: false }} />
       <Stack.Screen name="(basic)/dob" options={{ headerShown: false }} />
       <Stack.Screen name="(basic)/gender" options={{ headerShown: false }} />
-      <Stack.Screen name="(common)/profile" options={{ headerShown: false }} />
-      <Stack.Screen name="(app)" options={{ headerShown: false }} />
+      <Stack.Screen name="(app)/profile" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(app)/index"
+        options={{
+          header: (props) => {
+            return <ProfileCard {...props} title="Home" />;
+          },
+        }}
+      />
+      <Stack.Screen
+        name="(app)/settings"
+        options={{
+          header: (props) => {
+            return <ProfileCard {...props} title="Home" />;
+          },
+        }}
+      />
       <Stack.Screen name="+not-found" options={{ headerShown: false }} />
 
       <Stack.Screen

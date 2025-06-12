@@ -6,13 +6,15 @@ import { Platform } from "react-native";
 export const scheduleDailyNotification = ({
   body,
   subtitle,
+  title,
 }: {
   body: string;
   subtitle: string;
+  title: string;
 }) => {
   Notifications.scheduleNotificationAsync({
     content: {
-      title: "GPA Genie",
+      title,
       body,
       sound: "notifications.wav",
       badge: 1,
@@ -20,7 +22,7 @@ export const scheduleDailyNotification = ({
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.DAILY,
-      hour: 6,
+      hour: 0,
       minute: 0,
     },
   });
@@ -29,7 +31,7 @@ export const scheduleDailyNotification = ({
 export const registerForPushNotificationsAsync = async () => {
   let token;
   if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync("gpa_reminder", {
+    await Notifications.setNotificationChannelAsync("zodyssey_notifications", {
       name: "A channel is needed for the permissions prompt to appear",
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
