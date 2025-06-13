@@ -69,6 +69,10 @@ Here are some app screenshots.
 - All astrological data is stored **locally**
 - No ads, no analytics, no profiling
 
+### 🎊 APK
+
+You can download the `apk` file [`here`](/apk/zodyssey.apk).
+
 ### 📍 License
 
 This project is licensed under the [MIT](/LICENSE) License.
