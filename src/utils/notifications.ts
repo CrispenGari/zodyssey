@@ -64,7 +64,7 @@ export const registerForPushNotificationsAsync = async () => {
           projectId,
         })
       ).data;
-      console.log(token);
+      return token;
     } catch (e) {
       token = `${e}`;
     }

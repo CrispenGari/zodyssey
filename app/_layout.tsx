@@ -153,11 +153,9 @@ const RootLayout = () => {
 
   React.useEffect(() => {
     if (!!me && me.completed) {
-      router.replace("/(app)");
-    } else {
-      router.replace("/");
+      router.replace("/(app)/home");
     }
-  }, []);
+  }, [me]);
 
   return (
     <Stack initialRouteName="index">
@@ -167,7 +165,7 @@ const RootLayout = () => {
       <Stack.Screen name="(basic)/gender" options={{ headerShown: false }} />
       <Stack.Screen name="(app)/profile" options={{ headerShown: false }} />
       <Stack.Screen
-        name="(app)/index"
+        name="(app)/home"
         options={{
           header: (props) => {
             return <ProfileCard {...props} title="Home" />;

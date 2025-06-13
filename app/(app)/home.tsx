@@ -4,10 +4,8 @@ import { zodiacs } from "@/src/data/zodiac";
 import { useMeStore } from "@/src/store/meStore";
 import React from "react";
 import { ScrollView, Text } from "react-native";
-
 const Page = () => {
   const { me } = useMeStore();
-
   return (
     <ScrollView
       style={{

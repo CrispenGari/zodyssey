@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -22,13 +23,12 @@ const ProfileCard = ({ title }: Props) => {
   const { settings } = useSettingsStore();
   const router = useRouter();
 
+  if (!!!me) return null;
   return (
     <SafeAreaView
       style={{
         paddingTop: 50,
         backgroundColor: COLORS.tertiary,
-        paddingHorizontal: 20,
-        paddingBottom: 20,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBlockColor: COLORS.tertiary,
       }}
@@ -39,6 +39,7 @@ const ProfileCard = ({ title }: Props) => {
           alignItems: "center",
           justifyContent: "space-between",
           paddingBottom: 10,
+          paddingHorizontal: 20,
         }}
       >
         <Text
@@ -83,20 +84,38 @@ const ProfileCard = ({ title }: Props) => {
             pathname: "/(app)/profile",
           });
         }}
-        style={{ flexDirection: "row", gap: 10, alignItems: "center" }}
+        style={{
+          flexDirection: "row",
+          gap: 10,
+          alignItems: "center",
+          paddingHorizontal: 20,
+          paddingBottom: 20,
+        }}
       >
         <View style={{ flex: 1 }}>
-          <TypeWriter
-            style={{
-              fontFamily: FONTS.bold,
-              fontSize: 20,
-              color: COLORS.white,
-            }}
-            typing={1}
-            maxDelay={-50}
-          >
-            {getGreetingMessage()}, {me?.nickname}.
-          </TypeWriter>
+          {Platform.OS === "ios" ? (
+            <Text
+              style={{
+                fontFamily: FONTS.bold,
+                fontSize: 20,
+                color: COLORS.white,
+              }}
+            >
+              {getGreetingMessage()}, {me?.nickname}.
+            </Text>
+          ) : (
+            <TypeWriter
+              style={{
+                fontFamily: FONTS.bold,
+                fontSize: 20,
+                color: COLORS.white,
+              }}
+              typing={1}
+              maxDelay={-50}
+            >
+              {getGreetingMessage()}, {me?.nickname}.
+            </TypeWriter>
+          )}
           <Text
             style={{
               fontFamily: FONTS.bold,

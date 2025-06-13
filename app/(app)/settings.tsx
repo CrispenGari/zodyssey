@@ -25,6 +25,7 @@ const Page = () => {
   const { settings, update, restore } = useSettingsStore();
   const { destroy } = useMeStore();
   const router = useRouter();
+
   return (
     <ScrollView
       style={{ flex: 1, backgroundColor: COLORS.main }}
@@ -108,6 +109,8 @@ const Page = () => {
                     }
                     restore();
                     destroy();
+                    router.dismissAll();
+                    router.replace("/");
                   },
                 },
                 {
